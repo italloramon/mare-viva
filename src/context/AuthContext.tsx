@@ -9,6 +9,7 @@ type AuthContextType = {
   handleSendCode: (email: string) => void;
   handleVerifyCode: (email: string, code: string) => void;
   handleResetPassword: (email: string, newPassword: string) => void;
+  handleLogout: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -28,6 +29,7 @@ interface AuthProviderProps {
   onSendCode: (email: string) => void;
   onVerifyCode: (email: string, code: string) => void;
   onResetPassword: (email: string, newPassword: string) => void;
+  onLogout: () => void;
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({
@@ -37,6 +39,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   onSendCode,
   onVerifyCode,
   onResetPassword,
+  onLogout,
 }) => {
   return (
     <AuthContext.Provider
@@ -46,6 +49,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
         handleSendCode: onSendCode,
         handleVerifyCode: onVerifyCode,
         handleResetPassword: onResetPassword,
+        handleLogout: onLogout,
       }}
     >
       {children}
